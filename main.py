@@ -28,7 +28,9 @@ class Application:
         self.sign_in_button = ctk.CTkLabel(self.root, text="Sign in", text_color="blue", font=("Arial", 15, "underline"))
         self.sign_in_button.place(x=340, y=430)
         self.sign_in_button.bind("<Button-1>", lambda _: self.sign_in())
+        self.profile_button = ctk.CTkLabel(self.root, text="Settings", font=("Arial", 15, "bold"))
         self.label_not_records = ctk.CTkLabel(self.root, text="You don't have any records.", font=("Arial", 20, "bold"))
+        self.button_add_record = ctk.CTkButton(self.root, text="Add record", width=120, height=40)
 
     def sign_in(self):
         self.label_register.configure(text="Sign in")
@@ -67,7 +69,12 @@ class Application:
         conn.commit()
         conn.close()
         self.label_not_records.pack(expand=True)
-        
+        self.button_add_record.place(relx=0.5, rely=0.57, anchor="center")
+        self.profile()
+
+    def profile(self):
+        self.profile_button.place(relx=1.0, x=-10, y=10, anchor="ne")
+
 
 if __name__ == "__main__":
     app = Application()
